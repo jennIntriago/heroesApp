@@ -1,15 +1,20 @@
 import { getHeroesByPublisher } from "../helpers";
+import { HeroCard } from "./HeroCard";
 
 export const HeroList = ({ publisher }) => {
   const heroes = getHeroesByPublisher(publisher);
 
   return (
     <>
-      <ul>
-        {heroes.map((hero) => {
-          return <li key={hero.id}>{hero.superhero}</li>;
-        })}
-      </ul>
+      <div className="row rows-cols-1 row-cols-md-3 g-3">
+        {heroes.map((hero) => (
+          <HeroCard
+            key={hero.id}
+            // Esta sintaxis permite tomar cada propiedad y esparcirlas para no hacer un destructure de todas las props
+            {...hero}
+          />
+        ))}
+      </div>
     </>
   );
 };
