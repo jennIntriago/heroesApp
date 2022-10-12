@@ -3,10 +3,16 @@ import { types } from "../types/types";
 export const authReduce = (state, action) => {
   switch (action.type) {
     case types.login:
-      return state;
+      return {
+        ...state,
+        logged: true,
+        name: action.payload,
+      };
       break;
     case types.logout:
-      return state;
+      return {
+        logged: false,
+      };
     default:
       return state;
   }
