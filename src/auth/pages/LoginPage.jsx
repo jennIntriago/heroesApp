@@ -1,8 +1,14 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 export const LoginPage = () => {
+  //usamos nuestro context
+  const { login } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const onLogin = () => {
+    login("Jennifer Intriago");
     navigate("/", {
       replace: true,
     });
