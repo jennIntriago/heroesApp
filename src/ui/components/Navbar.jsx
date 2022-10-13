@@ -5,11 +5,12 @@ import { AuthContext } from "../../auth/context/AuthContext";
 export const Navbar = () => {
   //custom hook de react router dom
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   const onLogout = () => {
     //este metodo me permite navegar de una ruta a otra
     //el 2do argumento replace me evita que la persona pueda entrar al historial anterior.
+    logout();
     navigate("/login", {
       replace: true,
     });
