@@ -9,7 +9,7 @@ export const AppRouter = () => {
     <>
       <Routes>
         <Route
-          path="/login/*"
+          path="login/*"
           element={
             <PublicRoute>
               <Routes>
@@ -19,7 +19,6 @@ export const AppRouter = () => {
           }
         />
         {/* <Route path="login" element={<LoginPage />} /> */}
-
         {/* Protege las rutas si no esta logueado */}
         <Route
           path="/*"

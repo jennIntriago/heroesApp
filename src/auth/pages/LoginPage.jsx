@@ -8,8 +8,11 @@ export const LoginPage = () => {
 
   const navigate = useNavigate();
   const onLogin = () => {
+    //consultamos si hubo una ruta anterior al hacer logout
+    //si el lastPath es nulo lo lleva al /
+    const lastPath = localStorage.getItem("lastPath") || "/";
     login("Jennifer Intriago");
-    navigate("/", {
+    navigate(lastPath, {
       replace: true,
     });
   };
