@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import queryString from "query-string";
+
 import { useForm } from "../../hooks/useForm";
 import { HeroCard } from "../components";
 import { getHeroesByName } from "../helpers";
@@ -8,7 +9,6 @@ export const SearchPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  //con esta linea enviamos la propiedad search
   const { q = "" } = queryString.parse(location.search);
   const heroes = getHeroesByName(q);
 
@@ -21,8 +21,7 @@ export const SearchPage = () => {
 
   const onSearchSubmit = (event) => {
     event.preventDefault();
-    // if (searchText.trim().length <= 1) return;
-    //forma de enviar un query parameter
+    // if ( searchText.trim().length <= 1 ) return;
     navigate(`?q=${searchText}`);
   };
 
@@ -30,11 +29,12 @@ export const SearchPage = () => {
     <>
       <h1>Search</h1>
       <hr />
+
       <div className="row">
         <div className="col-5">
-          <h4>Searching </h4>
+          <h4>Searching</h4>
           <hr />
-          <form onSubmit={onSearchSubmit}>
+          <form onSubmit={onSearchSubmit} aria-label="form">
             <input
               type="text"
               placeholder="Search a hero"
@@ -44,6 +44,7 @@ export const SearchPage = () => {
               value={searchText}
               onChange={onInputChange}
             />
+
             <button className="btn btn-outline-primary mt-1">Search</button>
           </form>
         </div>
@@ -51,17 +52,14 @@ export const SearchPage = () => {
         <div className="col-7">
           <h4>Results</h4>
           <hr />
-          {/* Forma 1 para mostrar un mensaje u otro */}
 
-          {/* {q === "" ? (
-            <div className="alert alert-primary">Search a hero</div>
-          ) : (
-            heroes.length === 0 && (
-              <div className="alert alert-danger">
-                No hero with <b>{q}</b>
-              </div>
-            )
-          )} */}
+          {/* {
+              ( q === '' )
+                ? <div className="alert alert-primary">Search a hero</div>
+                : ( heroes.length === 0 ) 
+                  && <div className="alert alert-danger">No hero with <b>{ q }</b></div>
+            } */}
+
           <div
             className="alert alert-primary animate__animated animate__fadeIn"
             style={{ display: showSearch ? "" : "none" }}
@@ -70,6 +68,7 @@ export const SearchPage = () => {
           </div>
 
           <div
+            aria-label="alert-danger"
             className="alert alert-danger animate__animated animate__fadeIn"
             style={{ display: showError ? "" : "none" }}
           >
